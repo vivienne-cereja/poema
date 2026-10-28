@@ -1,4 +1,6 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
+
+Menu.setApplicationMenu(null);
 
 app.whenReady().then(() => {
   const janela = new BrowserWindow({ width: 900, height: 700, title: "poema" });
