@@ -2,16 +2,19 @@
   "name": "poema",
   "version": "1.0.0",
   "scripts": {
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "start": "electron ."
   },
   "author": "Vivienne and Leo",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
     "@types/node": "^24.19.2",
+    "electron": "^45.1.0",
     "typescript": "^7.0.2"
   },
   "imports": {
     "#*": "./src/*.ts"
-  }
+  },
+  "main": "src/main.ts"
 }
