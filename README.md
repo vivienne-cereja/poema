@@ -22,11 +22,18 @@ cp poema.png ~/.local/share/icons/hicolor/512x512/apps/
 | ctrl+s | save |
 | ctrl+shift+s | save as another file |
 | ctrl+shift+n | a new window with an empty page |
+| ctrl+b / ctrl+i | bold, italic |
+| ctrl+k | delete the line under the cursor |
 | ctrl+e | source and rendered side by side |
 | ctrl+shift+e | the rendered text in a window of its own |
 | ctrl+shift+= / ctrl+shift+- | zoom in and out |
+| ctrl+scroll | zoom in and out |
+| ctrl+0 | back to the normal zoom |
 | shift+alt+= / shift+alt+- | line height |
 | ctrl+, | fonts for the editor, the rendered text and code |
+| F1 / alt+F1 | the manual, here or in a new window |
+
+`poema notes.md` opens straight into the file. The first time it opens without one, it opens on the manual.
 
 Zoom, line height and fonts are kept in `~/.config/poema/settings.json`.
 

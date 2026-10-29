@@ -10,6 +10,7 @@ export type Settings = {
   codeFont: string,
   lineHeight: number,
   zoom: number,
+  welcomed: boolean,
 };
 
 declare module "#bus" {
@@ -28,6 +29,7 @@ const defaults: Settings = {
   codeFont: "Fira Code",
   lineHeight: 1.6,
   zoom: 0,
+  welcomed: false,
 };
 
 let current: Settings | undefined;

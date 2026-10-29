@@ -5,6 +5,7 @@ import { done, handles } from "#bus";
 declare module "#bus" {
   interface Commands {
     "new-window": { details: Record<never, never>, result: Record<never, never>, refusal: never };
+    "open-manual": { details: Record<never, never>, result: Record<never, never>, refusal: never };
   }
 }
 
@@ -21,11 +22,19 @@ const open = (page: string) => {
   return window;
 };
 
-export const editor = () => open("index.html");
+export const editor = (path?: string) =>
+  open(path ? `index.html?path=${encodeURIComponent(path)}` : "index.html");
+
+export const manual = () => open("index.html?manual");
 
 handles("new-window", async () => {
   editor();
   return done("new-window", {});
+});
+
+handles("open-manual", async () => {
+  manual();
+  return done("open-manual", {});
 });
 
 // a rendered window belongs to the editor that opened it: it follows that
