@@ -9,6 +9,7 @@ import { classHighlighter } from "@lezer/highlight";
 import { bold, italic } from "./format.ts";
 import { live } from "./live.ts";
 import { current, dress } from "./look.ts";
+import { tables } from "./tables.ts";
 import { toHtml, whenLanguageArrives } from "./render.ts";
 
 const rendered = document.querySelector<HTMLElement>("#rendered")!;
@@ -49,6 +50,7 @@ const page = (text: string) =>
       markdown({ base: markdownLanguage, codeLanguages: languages }),
       syntaxHighlighting(classHighlighter),
       live,
+      tables,
       keymap.of([
         { key: "Mod-b", run: bold },
         { key: "Mod-i", run: italic },

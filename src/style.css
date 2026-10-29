@@ -104,6 +104,32 @@ main > * {
   color: var(--faint);
 }
 
+/* a table in the source shows rendered until the cursor goes into it */
+
+.cm-table {
+  max-width: none;
+  margin: 0;
+  padding: 0.4rem 0;
+  cursor: text;
+  font-family: var(--editor-font), sans-serif;
+  font-size: 1em;
+}
+
+.cm-table table {
+  border-collapse: collapse;
+}
+
+.cm-table th,
+.cm-table td {
+  border: 1px solid var(--rule);
+  padding: 0.25rem 0.7rem;
+  text-align: left;
+}
+
+.cm-table th {
+  background: var(--tint);
+}
+
 .cm-content .tok-heading { color: var(--ink); }
 .cm-content .tok-url { color: var(--faint); }
 .cm-content .tok-link { color: var(--accent); }
