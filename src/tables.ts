@@ -27,7 +27,7 @@ class Table extends WidgetType {
 
   toDOM(view: EditorView) {
     const box = document.createElement("div");
-    box.className = "cm-table page";
+    box.className = "cm-table";
     box.innerHTML = toHtml(this.markdown);
     box.addEventListener("mousedown", (click) => {
       click.preventDefault();
