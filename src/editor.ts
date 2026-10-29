@@ -149,10 +149,7 @@ const showManual = async () => {
 };
 
 const shortcuts = (key: KeyboardEvent): (() => unknown) | undefined => {
-  if (key.code === "F1") {
-    if (key.altKey) return () => window.poema.execute("open-manual", {});
-    return showManual;
-  }
+  if (key.code === "F1" && key.altKey) return () => window.poema.execute("open-manual", {});
 
   const mod = key.ctrlKey || key.metaKey;
   const bigger = key.code === "Equal" || key.code === "NumpadAdd";

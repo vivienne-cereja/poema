@@ -31,7 +31,7 @@ cp poema.png ~/.local/share/icons/hicolor/512x512/apps/
 | ctrl+0 | back to the normal zoom |
 | shift+alt+= / shift+alt+- | line height |
 | ctrl+, | fonts for the editor, the rendered text and code |
-| F1 / alt+F1 | the manual, here or in a new window |
+| alt+F1 | the manual, in a new window |
 
 `poema notes.md` opens straight into the file. The first time it opens without one, it opens on the manual.
 

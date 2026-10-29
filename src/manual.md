@@ -1,6 +1,6 @@
 # poema
 
-This is the manual. It opens by itself the first time, and **F1** brings it back whenever you want it. It opens as an untitled page: change it as much as you like, nothing you do here touches the real one.
+This is the manual. It opens by itself the first time, and **alt+F1** brings it back in a new window whenever you want it. It opens as an untitled page: change it as much as you like, nothing you do here touches the real one.
 
 ## Writing
 
@@ -32,7 +32,6 @@ const verse = (line: string) => line.trim();
 | ctrl+, | fonts for the editor, the rendered text and code |
 | ctrl+f | find and replace |
 | ctrl+z / ctrl+shift+z | undo, redo |
-| F1 | this manual, in this window |
 | alt+F1 | this manual, in a new window |
 
 ## From the terminal
