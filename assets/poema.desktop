@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=poema
+Comment=A markdown editor
+Exec=poema
+Icon=poema
+Terminal=false
+Categories=Office;TextEditor;
+StartupWMClass=poema

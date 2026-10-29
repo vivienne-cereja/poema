@@ -1,9 +1,10 @@
 {
   "name": "poema",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "scripts": {
     "check": "tsc --noEmit",
-    "start": "electron ."
+    "start": "electron .",
+    "release": "sh scripts/release.sh"
   },
   "author": "Vivienne and Leo",
   "license": "ISC",
@@ -30,5 +31,11 @@
     "codemirror": "^6.0.2",
     "esbuild": "^0.28.2",
     "marked": "^18.1.2"
+  },
+  "description": "A markdown editor, made by Vivienne and Leo.",
+  "desktopName": "poema.desktop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vivienne-cereja/poema"
   }
 }
