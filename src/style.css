@@ -1,0 +1,216 @@
+:root {
+  --paper: #fbfaf7;
+  --ink: #2b2a28;
+  --faint: #8a857c;
+  --rule: #e6e2da;
+  --tint: #f1eee8;
+  --accent: #9b3b2e;
+  --editor-font: "Iosevka Aile";
+  --rendered-font: "IBM Plex Serif";
+  --code-font: "Fira Code";
+  --line-height: 1.6;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+main {
+  display: flex;
+  height: 100%;
+}
+
+main > * {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+}
+
+#rendered[hidden] {
+  display: none;
+}
+
+#source + #rendered {
+  border-left: 1px solid var(--rule);
+}
+
+/* the source */
+
+.cm-editor {
+  height: 100%;
+  background: var(--paper);
+  font-family: var(--editor-font), sans-serif;
+  font-size: 17px;
+}
+
+.cm-editor.cm-focused {
+  outline: none;
+}
+
+.cm-scroller {
+  overflow: auto;
+  line-height: var(--line-height);
+  font-family: inherit;
+}
+
+.cm-content {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3rem 2rem 40vh;
+  caret-color: var(--accent);
+}
+
+.cm-cursor {
+  border-left: 2px solid var(--accent);
+}
+
+.cm-selectionBackground,
+.cm-focused .cm-selectionBackground,
+.cm-content ::selection {
+  background: #ead9cf !important;
+}
+
+.cm-h1 { font-size: 1.9em; font-weight: 700; }
+.cm-h2 { font-size: 1.55em; font-weight: 700; }
+.cm-h3 { font-size: 1.3em; font-weight: 650; }
+.cm-h4 { font-size: 1.12em; font-weight: 650; }
+.cm-h5, .cm-h6 { font-weight: 650; color: var(--faint); }
+
+.cm-codeblock {
+  font-family: var(--code-font), monospace;
+  font-size: 0.88em;
+  background: var(--tint);
+}
+
+.cm-quote {
+  border-left: 3px solid var(--rule);
+  padding-left: 1rem !important;
+  color: var(--faint);
+}
+
+.cm-content .tok-monospace {
+  font-family: var(--code-font), monospace;
+  font-size: 0.9em;
+  background: var(--tint);
+  border-radius: 3px;
+}
+
+.cm-content .tok-meta,
+.cm-content .tok-processingInstruction {
+  color: var(--faint);
+}
+
+.cm-content .tok-heading { color: var(--ink); }
+.cm-content .tok-url { color: var(--faint); }
+.cm-content .tok-link { color: var(--accent); }
+
+.cm-searchMatch { background: #f3e2a9; }
+.cm-selectionMatch { background: #efe7d6; }
+
+/* both: emphasis, and code colours, the same classes in the editor and the rendered page */
+
+.tok-emphasis { font-style: italic; }
+.tok-strong { font-weight: 700; }
+.tok-strikethrough { text-decoration: line-through; }
+
+.tok-keyword { color: #8c3f8a; }
+.tok-atom, .tok-bool { color: #a4512b; }
+.tok-number { color: #a4512b; }
+.tok-string, .tok-string2 { color: #4b7a3d; }
+.tok-comment { color: #9a958c; font-style: italic; }
+.tok-variableName.tok-definition, .tok-propertyName.tok-definition { color: #2f5d8a; }
+.tok-typeName, .tok-className { color: #2f7a7a; }
+.tok-propertyName { color: #3d5f80; }
+.tok-operator, .tok-punctuation { color: #6c675f; }
+.tok-namespace { color: #8c3f8a; }
+.tok-labelName, .tok-macroName { color: #a4512b; }
+
+/* the rendered page */
+
+#rendered {
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.page {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 3rem 2rem 30vh;
+  font-family: var(--rendered-font), serif;
+  font-size: 18px;
+  line-height: var(--line-height);
+}
+
+.page h1, .page h2, .page h3 { line-height: 1.25; }
+.page a { color: var(--accent); }
+.page img { max-width: 100%; }
+.page hr { border: none; border-top: 1px solid var(--rule); }
+
+.page blockquote {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--rule);
+  color: var(--faint);
+}
+
+.page code {
+  font-family: var(--code-font), monospace;
+  font-size: 0.86em;
+  background: var(--tint);
+  border-radius: 3px;
+  padding: 0.1em 0.3em;
+}
+
+.page pre {
+  background: var(--tint);
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+.page pre code {
+  background: none;
+  padding: 0;
+}
+
+.page table { border-collapse: collapse; }
+.page th, .page td { border: 1px solid var(--rule); padding: 0.3rem 0.6rem; }
+
+/* settings */
+
+dialog {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.5rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: 15px/1.5 system-ui, sans-serif;
+  min-width: 22rem;
+}
+
+dialog::backdrop { background: rgb(0 0 0 / 0.15); }
+
+dialog label {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.9rem;
+}
+
+dialog input {
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: white;
+}
+
+dialog p {
+  margin: 0;
+  color: var(--faint);
+  font-size: 13px;
+}

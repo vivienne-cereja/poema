@@ -3,13 +3,25 @@
   <head>
     <meta charset="utf-8" />
     <title>poema</title>
-    <style>
-      html, body { height: 100%; margin: 0; }
-      textarea { box-sizing: border-box; width: 100%; height: 100%; border: none; outline: none; resize: none; padding: 2rem; font: 16px/1.6 monospace; }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <textarea autofocus></textarea>
-    <script type="module" src="window.ts"></script>
+    <main>
+      <div id="source"></div>
+      <article id="rendered" class="page" hidden></article>
+    </main>
+
+    <dialog id="settings">
+      <form method="dialog">
+        <label>editor font <input name="editorFont" list="fonts" /></label>
+        <label>rendered font <input name="renderedFont" list="fonts" /></label>
+        <label>code font <input name="codeFont" list="fonts" /></label>
+        <label>line height <input name="lineHeight" type="number" min="1" max="3" step="0.1" /></label>
+        <p>esc closes</p>
+      </form>
+      <datalist id="fonts"></datalist>
+    </dialog>
+
+    <script type="module" src="editor.ts"></script>
   </body>
 </html>

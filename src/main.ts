@@ -1,36 +1,46 @@
-import { app, BrowserWindow, Menu, ipcMain, net, protocol } from "electron";
-import { readFile } from "node:fs/promises";
-import { stripTypeScriptTypes } from "node:module";
+import { app, ipcMain, Menu, net, protocol } from "electron";
+import esbuild from "esbuild";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { execute, query } from "#bus";
+import { editor } from "#windows";
 import "#file";
+import "#settings";
 
 const src = fileURLToPath(new URL(".", import.meta.url));
 
 Menu.setApplicationMenu(null);
 
-// the window's chromium takes .ts for a video (MPEG transport stream), so the
-// poem serves its own files and strips the types on the way, like node does here
-protocol.registerSchemesAsPrivileged([{ scheme: "poema", privileges: { standard: true, secure: true } }]);
+protocol.registerSchemesAsPrivileged([
+  { scheme: "poema", privileges: { standard: true, secure: true, supportFetchAPI: true } },
+]);
 
 ipcMain.handle("execute", (_, command, details) => execute(command, details));
 ipcMain.handle("query", (_, name, details) => query(name, details));
 
+// the pages import codemirror and marked from node_modules, which a browser
+// can't resolve, so each page script is bundled in memory the first time it's
+// asked for, and kept
+const bundles = new Map<string, Promise<string>>();
+
+const bundle = (file: string) => {
+  let code = bundles.get(file);
+  if (!code) {
+    code = esbuild
+      .build({ entryPoints: [file], bundle: true, write: false, format: "esm", sourcemap: "inline" })
+      .then((built) => built.outputFiles[0]!.text);
+    bundles.set(file, code);
+  }
+  return code;
+};
+
 app.whenReady().then(() => {
   protocol.handle("poema", async (request) => {
-    const file = src + new URL(request.url).pathname;
+    const file = src + new URL(request.url).pathname.slice(1);
     if (!file.endsWith(".ts")) return net.fetch(pathToFileURL(file).href);
-    const code = stripTypeScriptTypes(await readFile(file, "utf8"));
-    return new Response(code, { headers: { "content-type": "text/javascript" } });
+    return new Response(await bundle(file), { headers: { "content-type": "text/javascript" } });
   });
 
-  const window = new BrowserWindow({
-    width: 900,
-    height: 700,
-    title: "poema",
-    webPreferences: { preload: src + "preload.mts", sandbox: false },
-  });
-  window.loadURL("poema://app/index.html").then(() => console.log("index.html loaded"));
+  editor();
 });
 
 app.on("window-all-closed", () => app.quit());
